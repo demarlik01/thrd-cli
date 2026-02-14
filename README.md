@@ -157,7 +157,7 @@ thrd delete 18050206876707110
 
 ## Authentication
 
-thrd-cli uses **OAuth 2.0** with the authorization code flow. Unlike twx-cli (which uses static OAuth 1.0a credentials), Threads requires:
+thrd-cli uses **OAuth 2.0** with the authorization code flow. Threads requires:
 
 1. **Browser-based authorization** — User must authorize in browser
 2. **Short-lived token** — Valid for 1 hour, automatically exchanged

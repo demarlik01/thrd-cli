@@ -2,17 +2,7 @@
 
 ## Overview
 
-thrd-cli is a TypeScript CLI application that wraps Meta's Threads API (via `graph.threads.net`) for terminal usage. It follows a modular architecture similar to [twx-cli](https://github.com/user/twx-cli), with domain-separated client modules.
-
-### Key Differences from twx-cli
-
-| Aspect | twx-cli (X/Twitter) | thrd-cli (Threads) |
-|--------|---------------------|---------------------|
-| Auth | OAuth 1.0a (4 credentials, HMAC signing) | OAuth 2.0 (short-lived → long-lived token) |
-| Post creation | Single POST request | Two-step: create container → publish |
-| Media upload | Upload endpoint | External URL reference (no upload) |
-| Token management | Static (no expiry) | 60-day long-lived tokens, requires refresh |
-| API base | `api.x.com/2/` | `graph.threads.net/v1.0/` |
+thrd-cli is a TypeScript CLI application that wraps Meta's Threads API (via `graph.threads.net`) for terminal usage. It follows a modular architecture with domain-separated client modules.
 
 ## Project Structure
 
@@ -276,9 +266,9 @@ Reply control can be set during post creation:
 ## Design Decisions
 
 - **Two-step publishing abstraction**: `createPost()` orchestrates container creation, status polling, and publishing into a single call — hiding API complexity from the CLI layer
-- **Separate `auth.ts` module**: OAuth 2.0 flow is complex enough (local server, browser, token exchange) to warrant its own module — unlike twx-cli which uses static OAuth 1.0a credentials
+- **Separate `auth.ts` module**: OAuth 2.0 flow is complex enough (local server, browser, token exchange) to warrant its own module
 - **Token expiry tracking**: Config stores `expires_at` so the CLI can warn/auto-refresh before token expiry
-- **Functional module pattern**: Same as twx-cli — domain functions take client as first parameter
+- **Functional module pattern**: Domain functions take client as first parameter
 - **Native fetch**: No HTTP library dependency — Node >= 18
 - **Status polling for media posts**: Image/video containers may take time to process; the CLI polls status before publishing with configurable timeout
 - **Carousel as first-class command**: Multi-media posts are common enough on Threads to justify a dedicated subcommand
