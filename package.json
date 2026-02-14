@@ -1,0 +1,71 @@
+{
+  "name": "thrd-cli",
+  "version": "0.1.0",
+  "description": "A fast, lightweight CLI for the Threads API",
+  "type": "module",
+  "bin": {
+    "thrd": "./dist/cli.js"
+  },
+  "main": "./dist/client/index.js",
+  "types": "./dist/client/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/client/index.js",
+      "types": "./dist/client/index.d.ts"
+    },
+    "./posts": {
+      "import": "./dist/client/posts.js",
+      "types": "./dist/client/posts.d.ts"
+    },
+    "./profiles": {
+      "import": "./dist/client/profiles.js",
+      "types": "./dist/client/profiles.d.ts"
+    },
+    "./replies": {
+      "import": "./dist/client/replies.js",
+      "types": "./dist/client/replies.d.ts"
+    },
+    "./insights": {
+      "import": "./dist/client/insights.js",
+      "types": "./dist/client/insights.d.ts"
+    },
+    "./types": {
+      "import": "./dist/client/types.js",
+      "types": "./dist/client/types.d.ts"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "dev": "tsx src/cli.ts",
+    "build": "tsup src/cli.ts src/client/index.ts src/client/types.ts src/client/posts.ts src/client/profiles.ts src/client/replies.ts src/client/insights.ts src/config.ts src/auth.ts --format esm --dts --clean",
+    "lint": "tsc --noEmit",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "threads",
+    "meta",
+    "cli",
+    "api",
+    "threads-api"
+  ],
+  "author": "demarlik01-ai",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "chalk": "^5.4.0",
+    "commander": "^13.0.0",
+    "open": "^10.1.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "tsup": "^8.3.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.7.0"
+  }
+}
