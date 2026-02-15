@@ -11,7 +11,7 @@ thrd-cli/
 ├── src/
 │   ├── cli.ts              # Entry point, command definitions (commander)
 │   ├── config.ts            # Token loading, validation, refresh logic
-│   ├── auth.ts              # OAuth 2.0 flow (local HTTP server for callback)
+│   ├── auth.ts              # OAuth 2.0 flow (local HTTPS server for callback (self-signed cert))
 │   └── client/
 │       ├── index.ts         # ThreadsClient base — token auth, fetch, rate limiting
 │       ├── types.ts         # Shared type definitions
@@ -51,7 +51,7 @@ thrd-cli/
                    │                  │
                    ▼                  ▼
             ┌────────────┐   ┌──────────────────┐
-            │ Local HTTP │   │ graph.threads.net │
+            │ Local HTTPS │   │ graph.threads.net │
             │  (callback)│   │   (REST API)      │
             └────────────┘   └──────────────────┘
 ```
@@ -85,7 +85,7 @@ Defines the CLI structure using commander.
 
 Handles the complete OAuth 2.0 authorization code flow:
 
-1. Starts a temporary local HTTP server on a configurable port (default: 3000)
+1. Starts a temporary local HTTPS server (with a self-signed certificate) on a configurable port (default: 3000)
 2. Opens the browser to `https://threads.net/oauth/authorize` with:
    - `client_id` — App ID from Meta Developer Dashboard
    - `redirect_uri` — Local callback URL

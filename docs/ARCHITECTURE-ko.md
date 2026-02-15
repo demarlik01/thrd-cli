@@ -11,7 +11,7 @@ thrd-cli/
 ├── src/
 │   ├── cli.ts              # 진입점, 커맨드 정의 (commander)
 │   ├── config.ts            # 토큰 로딩, 검증, 갱신 로직
-│   ├── auth.ts              # OAuth 2.0 플로우 (로컬 HTTP 서버로 콜백 처리)
+│   ├── auth.ts              # OAuth 2.0 플로우 (로컬 HTTPSS 서버로 콜백 처리 (자체서명 인증서))
 │   └── client/
 │       ├── index.ts         # ThreadsClient 베이스 — 토큰 인증, fetch, 레이트 리밋
 │       ├── types.ts         # 공유 타입 정의
@@ -51,7 +51,7 @@ thrd-cli/
                    │                  │
                    ▼                  ▼
             ┌────────────┐   ┌──────────────────┐
-            │ 로컬 HTTP  │   │ graph.threads.net │
+            │ 로컬 HTTPS  │   │ graph.threads.net │
             │ (콜백 서버)│   │   (REST API)      │
             └────────────┘   └──────────────────┘
 ```
@@ -85,7 +85,7 @@ commander를 사용하여 CLI 구조를 정의합니다.
 
 OAuth 2.0 인증 코드 플로우 전체를 처리합니다:
 
-1. 설정 가능한 포트(기본: 3000)에서 임시 로컬 HTTP 서버 시작
+1. 설정 가능한 포트(기본: 3000)에서 임시 로컬 HTTPS 서버 시작
 2. 브라우저에서 `https://threads.net/oauth/authorize` 오픈:
    - `client_id` — Meta 개발자 대시보드의 앱 ID
    - `redirect_uri` — 로컬 콜백 URL

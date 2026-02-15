@@ -74,9 +74,11 @@ thrd auth
 
 This will:
 1. Open your browser to authorize the app
-2. Start a local callback server (default port 3000)
+2. Start a local **HTTPS** callback server with a self-signed certificate (default port 3000)
 3. Exchange the authorization code for a long-lived token (valid 60 days)
 4. Save credentials to `~/.config/thrd-cli/config.json` (mode 600)
+
+> **Note:** `thrd auth` requires [OpenSSL](https://www.openssl.org/) to generate a temporary self-signed certificate. It is pre-installed on most macOS and Linux systems.
 
 Or set environment variables:
 ```bash
@@ -205,7 +207,7 @@ Credentials are loaded in order:
 
 - **Media must be hosted at a public URL** — The Threads API does not accept file uploads. Images and videos must be accessible via HTTPS.
 - **Two-step posting** — The API requires creating a "container" first, then publishing it. thrd-cli handles this transparently.
-- **Container processing time** — Image/video containers may take time to process. The CLI polls the container status before publishing.
+- **Container processing time** — All containers (including text) may take time to process. The CLI polls the container status before publishing.
 - **Rate limits** — 250 API calls per user per hour; 250 posts per 24 hours.
 
 ## Project Structure
