@@ -52,16 +52,16 @@
     "api",
     "threads-api"
   ],
-  "author": "demarlik01-ai",
+  "author": "demarlik01",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/demarlik01-ai/thrd-cli.git"
+    "url": "https://github.com/demarlik01/thrd-cli.git"
   },
   "bugs": {
-    "url": "https://github.com/demarlik01-ai/thrd-cli/issues"
+    "url": "https://github.com/demarlik01/thrd-cli/issues"
   },
-  "homepage": "https://github.com/demarlik01-ai/thrd-cli#readme",
+  "homepage": "https://github.com/demarlik01/thrd-cli#readme",
   "engines": {
     "node": ">=18"
   },
