@@ -1,5 +1,7 @@
 # thrd-cli
 
+📐 [Architecture](./docs/ARCHITECTURE.md) | [아키텍처 (한국어)](./docs/ARCHITECTURE-ko.md)
+
 A fast, lightweight CLI for the Meta Threads API.
 
 ```bash
@@ -225,8 +227,6 @@ src/
     ├── profiles.ts     # User profile
     └── insights.ts     # Media and account insights
 ```
-
-See [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) for details.
 
 ## Requirements
 
